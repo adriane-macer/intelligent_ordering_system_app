@@ -1,26 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intelligent_ordering_system/pages/ai_companion_page.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Intelligent Ordering System App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MainPage(title: 'Main Page'),
-    );
-  }
-}
-
-class MainPage extends StatelessWidget {
-  MainPage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
+class AICompanionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +19,7 @@ class MainPage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Text(
-                    "Intelligent Ordering System App",
+                    "A.I. Companion",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 22,
@@ -55,11 +35,18 @@ class MainPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    child: Text(
-                      "Please select an option to order",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 22,
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text(
+                        """
+ A.I. will help you to order according to your emotion.
+ 
+Please select Start and act naturally while A.I. read you emotion.
+              """,
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 22,
+                        ),textAlign: TextAlign.center,
                       ),
                     ),
                   ),
@@ -73,7 +60,7 @@ class MainPage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Text(
-                          "A.I. Companion",
+                          "Start",
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                       ),
@@ -90,18 +77,20 @@ class MainPage extends StatelessWidget {
                   SizedBox(
                     height: 12.0,
                   ),
-                  RaisedButton(
+                  OutlineButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0)),
                     color: Colors.blue,
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Text(
-                        "Manual order",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
+                        "Back to Main",
+                        style: TextStyle(color: Colors.blue, fontSize: 20),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                   ),
                 ],
               ),
