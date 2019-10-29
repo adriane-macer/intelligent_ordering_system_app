@@ -35,7 +35,7 @@ class MainPage extends StatelessWidget {
                 height: 50,
               ),
               Container(
-                color: Colors.blue[300],
+                color: Colors.blue[900],
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Text(

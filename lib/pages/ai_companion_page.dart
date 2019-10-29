@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intelligent_ordering_system/pages/capture_page.dart';
 
 class AICompanionPage extends StatelessWidget {
   @override
@@ -15,7 +16,7 @@ class AICompanionPage extends StatelessWidget {
                 height: 50,
               ),
               Container(
-                color: Colors.blue[300],
+                color: Colors.blue[900],
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Text(
@@ -46,7 +47,8 @@ Please select Start and act naturally while A.I. read you emotion.
                         style: TextStyle(
                           color: Colors.blue,
                           fontSize: 22,
-                        ),textAlign: TextAlign.center,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),
@@ -69,7 +71,7 @@ Please select Start and act naturally while A.I. read you emotion.
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return AICompanionPage();
+                              return CapturePage();
                             },
                           ),
                         );
