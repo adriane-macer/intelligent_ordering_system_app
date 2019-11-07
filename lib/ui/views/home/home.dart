@@ -23,6 +23,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
   @override
   bool get wantKeepAlive => true;
+  Emotion _emotion;
 
   @override
   void initState() {
@@ -90,10 +91,20 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                                 func: () async {
                                   if (Category.listCategory[index].name ==
                                       "AI suggestion") {
+                                    if (_emotion != null) {
+                                      final result =
+                                          await _recaptureConfirmationDialog(
+                                              context);
+                                      if (!result)
+                                        return setCategory(
+                                            Category.listCategory[index],
+                                            emotion: _emotion);
+                                    }
                                     final result =
                                         await captureEmotion(context);
                                     if (result.runtimeType == Emotion &&
                                         result != null) {
+                                      _emotion = result;
                                       return setCategory(
                                           Category.listCategory[index],
                                           emotion: result);
@@ -197,5 +208,48 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
       return result;
     }
     return null;
+  }
+
+  _recaptureConfirmationDialog(context) {
+    return showDialog<bool>(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        content: Wrap(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "There is a previous captured emotion.",
+                  style: TextStyle(color: CustomColors.blue),
+                ),
+                Text(
+                  "\nDo you want to capture again?",
+                  style: TextStyle(color: CustomColors.blue),
+                ),
+              ],
+            ),
+          ],
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Yes'),
+            onPressed: () {
+              Navigator.pop(context, true);
+            },
+          ),
+          FlatButton(
+            child: Text('No'),
+            onPressed: () {
+              Navigator.pop(context, false);
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
