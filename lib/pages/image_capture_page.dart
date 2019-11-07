@@ -135,11 +135,9 @@ class _ImageCapturePageState extends State<ImageCapturePage> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 5.0),
                     child: new FooterButton(
-                      color: isLoading ? Colors.grey : CustomColors.blue,
+                      color: CustomColors.blue,
                       title: _image == null ? "Capture" : "Recapture",
-                      func: () {
-                        if (!isLoading) _getImageAndDetectFaces();
-                      },
+                      func: isLoading ? null : _getImageAndDetectFaces,
                     ),
                   ),
                 ),
