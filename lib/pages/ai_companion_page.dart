@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intelligent_ordering_system/pages/capture_page.dart';
+import 'package:intelligent_ordering_system/pages/image_capture_page.dart';
 
 class AICompanionPage extends StatelessWidget {
   @override
@@ -71,7 +72,7 @@ Please select Start and act naturally while A.I. read you emotion.
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return CapturePage();
+                              return ImageCapturePage();
                             },
                           ),
                         );

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "683016518001",
+    "firebase_url": "https://intelligent-ordering-system.firebaseio.com",
+    "project_id": "intelligent-ordering-system",
+    "storage_bucket": "intelligent-ordering-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:683016518001:android:1822955017c622d44e5ed0",
+        "android_client_info": {
+          "package_name": "com.dartcomrade.intelligent_ordering_system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "683016518001-78skt1je92k8nn9bbk6ulnmv2n3pebll.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgknATTF1iV87EGNIXMsbZeUFvKsm2Z5A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "683016518001-78skt1je92k8nn9bbk6ulnmv2n3pebll.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
