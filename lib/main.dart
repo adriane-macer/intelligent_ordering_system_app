@@ -1,114 +1,69 @@
 import 'package:flutter/material.dart';
-import 'package:intelligent_ordering_system/pages/ai_companion_page.dart';
+import 'package:flutter/services.dart';
+import 'package:intelligent_ordering_system/core/config/app.dart';
+import 'package:intelligent_ordering_system/core/config/route.dart';
+import 'package:intelligent_ordering_system/core/config/routes.dart';
+import 'package:intelligent_ordering_system/core/viewmodel/category_viewmodel.dart';
+import 'package:intelligent_ordering_system/core/viewmodel/item_viewmodel.dart';
+import 'package:intelligent_ordering_system/core/viewmodel/theme_provider.dart';
+import 'package:intelligent_ordering_system/layout.dart';
+import 'package:intelligent_ordering_system/locator.dart';
+import 'package:intelligent_ordering_system/ui/views/home/checkout.dart';
+import 'package:navigate/navigate.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+
+void main() {
+  setupLocator();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
+  MyApp() {
+    Navigate.registerRoutes(
+        routes: route, defualtTransactionType: TransactionType.fadeIn);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Intelligent Ordering System App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MainPage(title: 'Main Page'),
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(builder: (_) => ThemeProvider()),
+        ChangeNotifierProvider(builder: (_) => CategoryViewModel()),
+        ChangeNotifierProvider(builder: (_) => ItemViewModel()),
+      ],
+      child: new MaterialAppTheme(),
     );
   }
 }
 
-class MainPage extends StatelessWidget {
-  MainPage({Key key, this.title}) : super(key: key);
+class MaterialAppTheme extends StatefulWidget {
+  @override
+  _MaterialAppThemeState createState() => _MaterialAppThemeState();
+}
 
-  final String title;
+class _MaterialAppThemeState extends State<MaterialAppTheme> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(
-                height: 50,
-              ),
-              Container(
-                color: Colors.blue[900],
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Text(
-                    "Intelligent Ordering System App",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    child: Text(
-                      "Please select an option to order",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 22,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  RaisedButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0)),
-                      color: Colors.blue,
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Text(
-                          "A.I. Companion",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return AICompanionPage();
-                            },
-                          ),
-                        );
-                      }),
-                  SizedBox(
-                    height: 12.0,
-                  ),
-                  RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0)),
-                    color: Colors.blue,
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Text(
-                        "Manual order",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                    ),
-                    onPressed: () {},
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
+    return MaterialApp(
+      showPerformanceOverlay: false,
+      debugShowCheckedModeBanner: false,
+      title: App.name,
+      home: Layout(),
+      routes: <String, WidgetBuilder>{
+        Routes.layout: (context) => Layout(),
+        Routes.checkout: (context) => CheckOut(),
+      },
     );
   }
 }
