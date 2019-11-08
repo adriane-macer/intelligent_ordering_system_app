@@ -1,17 +1,23 @@
+import 'package:intelligent_ordering_system/ui/views/home/checkout.dart';
+import 'package:intelligent_ordering_system/ui/views/home/end.dart';
+import 'package:intelligent_ordering_system/ui/views/home/home.dart';
+import 'package:intelligent_ordering_system/ui/views/home/image_capture_page.dart';
+import 'package:intelligent_ordering_system/ui/views/home/play.dart';
+import 'package:intelligent_ordering_system/ui/views/home/start.dart';
+import 'package:intelligent_ordering_system/ui/views/home/facial.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intelligent_ordering_system/core/config/app.dart';
-import 'package:intelligent_ordering_system/core/config/route.dart';
-import 'package:intelligent_ordering_system/core/config/routes.dart';
-import 'package:intelligent_ordering_system/core/viewmodel/category_viewmodel.dart';
-import 'package:intelligent_ordering_system/core/viewmodel/item_viewmodel.dart';
-import 'package:intelligent_ordering_system/core/viewmodel/theme_provider.dart';
-import 'package:intelligent_ordering_system/layout.dart';
-import 'package:intelligent_ordering_system/locator.dart';
-import 'package:intelligent_ordering_system/ui/views/home/checkout.dart';
 import 'package:navigate/navigate.dart';
-import 'package:provider/provider.dart';
+import 'core/config/route.dart';
+import 'core/config/routes.dart';
+import 'core/config/app.dart';
 
+import 'core/viewmodel/category_viewmodel.dart';
+import 'core/viewmodel/item_viewmodel.dart';
+import 'core/viewmodel/theme_provider.dart';
+import 'layout.dart';
+import 'locator.dart';
 
 void main() {
   setupLocator();
@@ -62,7 +68,12 @@ class _MaterialAppThemeState extends State<MaterialAppTheme> {
       home: Layout(),
       routes: <String, WidgetBuilder>{
         Routes.layout: (context) => Layout(),
+        Routes.home: (context) => Home(),
         Routes.checkout: (context) => CheckOut(),
+        Routes.play: (context) => Play(),
+        Routes.start: (context) => Start(),
+        Routes.facial: (context) => ImageCapturePage(),
+        Routes.end: (context) => End(),
       },
     );
   }

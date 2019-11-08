@@ -2,16 +2,14 @@ import 'package:intelligent_ordering_system/core/shared/custom_colors.dart';
 import 'package:flutter/material.dart';
 
 class FooterButton extends StatelessWidget {
-  final String title;
-  final Color color;
-  final Function func;
-  final bool active;
+  String title;
+  Color color;
+  Function func;
 
   FooterButton(
       {@required this.title,
       @required this.color,
       @required this.func,
-      this.active = true,
       Key key})
       : super(key: key);
 
@@ -21,7 +19,8 @@ class FooterButton extends StatelessWidget {
       padding: EdgeInsets.all(10),
       shape: new RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(8.0)),
-      onPressed: active ? func : null,
+      onPressed: func,
+      disabledColor: Colors.grey,
       color: color,
       child: Text(
         "${title.toString()}",

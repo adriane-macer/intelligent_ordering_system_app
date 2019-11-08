@@ -7,7 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intelligent_ordering_system/core/models/item.dart';
 import 'package:intelligent_ordering_system/core/shared/custom_colors.dart';
 import 'package:intelligent_ordering_system/core/shared/custom_text_styles.dart';
-import 'package:intelligent_ordering_system/ui/face_painter.dart';
+
+import 'package:intelligent_ordering_system/ui/widgets/face_painter.dart';
 import 'package:intelligent_ordering_system/ui/widgets/footer_button.dart';
 
 class ImageCapturePage extends StatefulWidget {
