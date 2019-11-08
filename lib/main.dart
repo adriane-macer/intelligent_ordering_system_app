@@ -72,7 +72,7 @@ class _MaterialAppThemeState extends State<MaterialAppTheme> {
         Routes.checkout: (context) => CheckOut(),
         Routes.play: (context) => Play(),
         Routes.start: (context) => Start(),
-        Routes.facial: (context) => ImageCapturePage(),
+        Routes.facial: (context) => Facial(),
         Routes.end: (context) => End(),
       },
     );

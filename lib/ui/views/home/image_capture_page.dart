@@ -39,7 +39,6 @@ class _ImageCapturePageState extends State<ImageCapturePage> {
     List<Face> faces = await faceDetector.processImage(image);
 
     for (var face in faces) {
-      // If classification was enabled with FaceDetectorOptions:
       if (face.smilingProbability != null) {
         _smilingProbability = face.smilingProbability;
       }
@@ -92,11 +91,14 @@ class _ImageCapturePageState extends State<ImageCapturePage> {
                     )
                   : (_imageFile == null)
                       ? Center(
-                          child: Text(
-                          'Look at the camera then press the capture button.',
-                          style: CustomTextStyle.body2
-                              .copyWith(color: Colors.white),
-                        ))
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal:40.0),
+                            child: Text(
+                            'Look at the camera then press the capture button.',
+                            style: CustomTextStyle.body2
+                                .copyWith(color: Colors.white),
+                        ),
+                          ))
                       : Center(
                           child: SingleChildScrollView(
                             child: Column(
