@@ -47,6 +47,15 @@ class ItemViewModel extends BaseModel {
     notifyListeners();
   }
 
+  filterItemByEmotion(Emotion emotion) async {
+    _filterItems = [];
+    for(var item in getAllItems){
+      if(item.emotion == emotion)
+        _filterItems.add(item);
+    }
+    notifyListeners();
+  }
+
   deleteCartItem(Item item) async {
     Item.listServices.where((data) {
       if (data == item) {

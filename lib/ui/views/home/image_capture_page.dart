@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intelligent_ordering_system/core/models/item.dart';
 import 'package:intelligent_ordering_system/core/shared/custom_colors.dart';
 import 'package:intelligent_ordering_system/core/shared/custom_text_styles.dart';
+import 'package:intelligent_ordering_system/ui/views/home/suggested_item_page.dart';
 
 import 'package:intelligent_ordering_system/ui/widgets/face_painter.dart';
 import 'package:intelligent_ordering_system/ui/widgets/footer_button.dart';
@@ -173,7 +174,14 @@ class _ImageCapturePageState extends State<ImageCapturePage> {
                             color: CustomColors.green,
                             title: "Proceed",
                             func: () {
-                              Navigator.pop(context, _emotion);
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return SuggestedImagePage(emotion: _emotion,);
+                                  },
+                                ),
+                              );
                             },
                           ),
                         ),
