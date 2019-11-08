@@ -3,9 +3,11 @@ import 'package:intelligent_ordering_system/core/models/category.dart';
 import 'package:intelligent_ordering_system/core/models/item.dart';
 import 'package:intelligent_ordering_system/core/shared/custom_colors.dart';
 import 'package:intelligent_ordering_system/core/shared/custom_media.dart';
+import 'package:intelligent_ordering_system/core/shared/custom_text_styles.dart';
 import 'package:intelligent_ordering_system/core/viewmodel/category_viewmodel.dart';
 import 'package:intelligent_ordering_system/core/viewmodel/item_viewmodel.dart';
-import 'package:intelligent_ordering_system/pages/image_capture_page.dart';
+import 'package:intelligent_ordering_system/ui/views/home/emotion_capture_page.dart';
+import 'package:intelligent_ordering_system/ui/views/home/image_capture_page.dart';
 import 'package:intelligent_ordering_system/ui/widgets/CarouselBanner.dart';
 import 'package:intelligent_ordering_system/ui/widgets/category_button.dart';
 import 'package:intelligent_ordering_system/ui/widgets/footer_button.dart';
@@ -90,7 +92,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                                 title: Category.listCategory[index].name,
                                 func: () async {
                                   if (Category.listCategory[index].name ==
-                                      "AI suggestion") {
+                                      "ai suggestion") {
                                     if (_emotion != null) {
                                       final result =
                                           await _recaptureConfirmationDialog(
@@ -100,6 +102,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
                                             Category.listCategory[index],
                                             emotion: _emotion);
                                     }
+
                                     final result =
                                         await captureEmotion(context);
                                     if (result.runtimeType == Emotion &&
@@ -199,7 +202,8 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
       context,
       MaterialPageRoute(
         builder: (context) {
-          return ImageCapturePage();
+//          return ImageCapturePage();
+        return EmotionCapturePage();
         },
       ),
     );
@@ -222,11 +226,11 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
               children: [
                 Text(
                   "There is a previous captured emotion.",
-                  style: TextStyle(color: CustomColors.blue),
+                  style: CustomTextStyle.body2.copyWith(color: CustomColors.blue),
                 ),
                 Text(
                   "\nDo you want to capture again?",
-                  style: TextStyle(color: CustomColors.blue),
+                  style: CustomTextStyle.body2.copyWith(color: CustomColors.blue),
                 ),
               ],
             ),

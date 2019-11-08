@@ -62,7 +62,6 @@ class _ImageCapturePageState extends State<ImageCapturePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      appBar: AppBar(),
       body: Column(
         children: <Widget>[
           Expanded(
