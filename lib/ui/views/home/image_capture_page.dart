@@ -10,6 +10,8 @@ import 'package:intelligent_ordering_system/core/shared/custom_text_styles.dart'
 
 import 'package:intelligent_ordering_system/ui/widgets/face_painter.dart';
 import 'package:intelligent_ordering_system/ui/widgets/footer_button.dart';
+import 'package:loading/indicator/line_scale_pulse_out_indicator.dart';
+import 'package:loading/loading.dart';
 
 class ImageCapturePage extends StatefulWidget {
   @override
@@ -66,50 +68,72 @@ class _ImageCapturePageState extends State<ImageCapturePage> {
       body: Column(
         children: <Widget>[
           Expanded(
-            child: isLoading
-                ? Center(child: CircularProgressIndicator())
-                : (_imageFile == null)
-                    ? Center(
-                        child: Text(
-                        'Look at the camera then press the capture button.',
-                        style: CustomTextStyle.body2,
-                      ))
-                    : Center(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.6,
-                                width: MediaQuery.of(context).size.width * 0.6,
-                                child: FittedBox(
-                                  child: SizedBox(
-                                    width: _image.width.toDouble(),
-                                    height: _image.height.toDouble(),
-                                    child: CustomPaint(
-                                      painter: FacePainter(_image, _faces),
+            child: Container(
+              color: CustomColors.lightblue,
+              child: isLoading
+                  ? Stack(
+                      children: <Widget>[
+                        Center(
+                          child: Loading(
+                              indicator: LineScalePulseOutIndicator(),
+                              size: 100.0),
+                        ),
+                        Container(
+                          alignment: Alignment.topCenter,
+                          padding: EdgeInsets.only(top: 50),
+                          child: Text(
+                            "Processing image",
+                            style: CustomTextStyle.headerFade
+                                .copyWith(fontSize: 24.0, color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    )
+                  : (_imageFile == null)
+                      ? Center(
+                          child: Text(
+                          'Look at the camera then press the capture button.',
+                          style: CustomTextStyle.body2
+                              .copyWith(color: Colors.white),
+                        ))
+                      : Center(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.6,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.6,
+                                  child: FittedBox(
+                                    child: SizedBox(
+                                      width: _image.width.toDouble(),
+                                      height: _image.height.toDouble(),
+                                      child: CustomPaint(
+                                        painter: FacePainter(_image, _faces),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: (_faces.length > 0)
-                                    ? Text(
-                                        "Smiling probability = $_smilingProbability")
-                                    : Container(),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: (_faces.length > 0)
-                                    ? _emotionEquivalent(_smilingProbability)
-                                    : Container(),
-                              ),
-                            ],
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: (_faces.length > 0)
+                                      ? Text(
+                                          "Smiling probability = $_smilingProbability")
+                                      : Container(),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: (_faces.length > 0)
+                                      ? _emotionEquivalent(_smilingProbability)
+                                      : Container(),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
+            ),
           ),
           Container(
             padding: EdgeInsets.all(5),
