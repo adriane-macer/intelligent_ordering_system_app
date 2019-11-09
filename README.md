@@ -15,7 +15,7 @@ With the help of ML kit, the app can suggest list of items to order according to
 Team: Dart Comrade
 Name: [John Andrew Asaria](https://github.com/jaasaria/) <br>
 Github: [Link](https://github.com/jaasaria/flutter.FH2019/) <br>
-This guy has done many part of this project. He did all the ui part. Thank you comrade for te great mind.
+This guy has done many part of this project. Thank you comrade for te great mind.
 
 
 #### Todo: More Samples
