@@ -139,14 +139,14 @@ class _FacialState extends State<Facial>
     if(result.runtimeType == Emotion && result != null){
       emo = result;
     }
-
+    print(emo);
     await itemViewModel.getFacialOrder(emo);
 //     Navigator.of(context).pushNamed(Routes.facialorder, emotion: emo);
 
     Navigator.pushNamed(
       context,
       Routes.facialorder,
-      arguments: FacialOrder(emotion: emo),
+//      arguments: FacialOrder(emotion: emo),
     );
   }
 

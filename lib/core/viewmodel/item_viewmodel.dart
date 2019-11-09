@@ -3,6 +3,14 @@ import 'package:intelligent_ordering_system/core/models/category.dart';
 import 'package:intelligent_ordering_system/core/models/item.dart';
 
 class ItemViewModel extends BaseModel {
+  Emotion _emotion = Emotion.NORMAL;
+
+  Emotion get emotion => _emotion;
+
+  setEmotion(Emotion value) {
+    _emotion = value;
+  }
+
   List<Item> _filterItems = Item.listServices;
 
   List<Item> get getAllItems => Item.listServices;

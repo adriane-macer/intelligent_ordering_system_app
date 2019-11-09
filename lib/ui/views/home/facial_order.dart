@@ -13,9 +13,8 @@ import 'package:progress_dialog/progress_dialog.dart';
 import 'package:provider/provider.dart';
 
 class FacialOrder extends StatefulWidget {
-  Emotion emotion;
 
-  FacialOrder({this.emotion, Key key}) : super(key: key);
+  FacialOrder({Key key}) : super(key: key);
   _FacialOrderState createState() => _FacialOrderState();
 }
 
@@ -38,7 +37,7 @@ class _FacialOrderState extends State<FacialOrder>
   Widget build(BuildContext context) {
     final ItemViewModel itemViewModel = Provider.of<ItemViewModel>(context);
     pr = new ProgressDialog(context);
-
+    final Emotion emo = itemViewModel.emotion;
     final FacialOrder args = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
@@ -83,7 +82,7 @@ class _FacialOrderState extends State<FacialOrder>
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Text(
-                                  'Facial Expression: ${args.emotion.toString().split('.').last}',
+                                  'Facial Expression: ${emo.toString().split('.').last}',
                                   style: Theme.of(context).textTheme.subhead),
                               Text(
                                   'Total ${itemViewModel.getCheckOutItemsTotalAmount}',

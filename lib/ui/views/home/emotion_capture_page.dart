@@ -33,6 +33,7 @@ class _EmotionCapturePageState extends State<EmotionCapturePage> {
       if (face.smilingProbability != null) {
         double smilingProbability = face.smilingProbability;
         _emotion = _emotionEquivalent(smilingProbability);
+        break;
       }
     }
     if (mounted) {

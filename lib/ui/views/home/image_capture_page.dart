@@ -7,12 +7,14 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intelligent_ordering_system/core/models/item.dart';
 import 'package:intelligent_ordering_system/core/shared/custom_colors.dart';
 import 'package:intelligent_ordering_system/core/shared/custom_text_styles.dart';
+import 'package:intelligent_ordering_system/core/viewmodel/item_viewmodel.dart';
 import 'package:intelligent_ordering_system/ui/views/home/suggested_item_page.dart';
 
 import 'package:intelligent_ordering_system/ui/widgets/face_painter.dart';
 import 'package:intelligent_ordering_system/ui/widgets/footer_button.dart';
 import 'package:loading/indicator/line_scale_pulse_out_indicator.dart';
 import 'package:loading/loading.dart';
+import 'package:provider/provider.dart';
 
 class ImageCapturePage extends StatefulWidget {
   @override
@@ -92,13 +94,13 @@ class _ImageCapturePageState extends State<ImageCapturePage> {
                   : (_imageFile == null)
                       ? Center(
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal:40.0),
-                            child: Text(
+                          padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                          child: Text(
                             'Look at the camera then press the capture button.',
                             style: CustomTextStyle.body2
                                 .copyWith(color: Colors.white),
-                        ),
-                          ))
+                          ),
+                        ))
                       : Center(
                           child: SingleChildScrollView(
                             child: Column(
@@ -176,14 +178,9 @@ class _ImageCapturePageState extends State<ImageCapturePage> {
                             color: CustomColors.green,
                             title: "Proceed",
                             func: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return SuggestedImagePage(emotion: _emotion,);
-                                  },
-                                ),
-                              );
+                              final ItemViewModel itemVieModel = Provider.of<ItemViewModel>(context);
+                              itemVieModel.setEmotion(_emotion);
+                              Navigator.pop(context, _emotion);
                             },
                           ),
                         ),

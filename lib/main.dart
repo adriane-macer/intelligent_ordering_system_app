@@ -1,5 +1,6 @@
 import 'package:intelligent_ordering_system/ui/views/home/checkout.dart';
 import 'package:intelligent_ordering_system/ui/views/home/end.dart';
+import 'package:intelligent_ordering_system/ui/views/home/facial_order.dart';
 import 'package:intelligent_ordering_system/ui/views/home/home.dart';
 import 'package:intelligent_ordering_system/ui/views/home/image_capture_page.dart';
 import 'package:intelligent_ordering_system/ui/views/home/play.dart';
@@ -74,6 +75,7 @@ class _MaterialAppThemeState extends State<MaterialAppTheme> {
         Routes.start: (context) => Start(),
         Routes.facial: (context) => Facial(),
         Routes.end: (context) => End(),
+        Routes.facialorder: (context) => FacialOrder(),
       },
     );
   }
